@@ -1,0 +1,154 @@
+
+##CHAINS
+
+# Target, chain C of 3Q1R (tRNA)         
+
+#RNA C 1 GGCCAGGUAGCUCAGUUGGUAGAGCACUGGAUAUGGGCACCCCCUAAGUCCAGGUGUCGGCGGUUCGAUUCCGCCCCUGGCCACCA
+
+
+
+
+# Model, 1F27 (pseudoknot, chain W)
+
+#Wild type
+#RNA W 3 ACCGUCAGAGGACACGGUU
+
+#G mutant
+#RNA W 3 ACCGUCGGAGGACACGGUU
+
+#C mutant
+#RNA W 3 ACCGUCCGAGGACACGGUU
+
+#U mutant
+RNA W 3 ACCGUCUGAGGACACGGUU
+
+
+
+
+
+#Other chains to be moved along
+
+# Chain Z of 1F27 (pseudoknot) + 5 extra nucleotides added to 3' end (to match pseudoknot used in the lab)
+
+RNA Z 22 AAAAAGUCCUCGCCA
+
+
+
+# Chain B of 3Q1R (RNase p RNA)
+
+RNA B 1 GGAGAGGAGCAGGCGGUCGCGGGGGCGCACACCUGCGCUUCCCGAGGAAAGUCCGGACUCUGGAGCGGGGUGCCGGGUAACGCCCGGGAGGGGUGACCCUCGGACAGGGCCAUAGAGAAGAAGACCGCCCGGGGGGAAACUUCCGGGCAAGGGUGGAACGGUGGGGUAAGAGCCCACCAGCGUCGGGGCAACCCGGCGGCUUGGCAACCCCCACCUGGAGCAAGGCCAAGCAGGGGGUUGGGUCGCUCCCCCUAUUCCCCCGGGUUGGCCGCUUGAGGUGUGCGGUAACGCACACCCCAGAUUGAUGACCGCCCACGACAGAAUCCGGCUUAUGCUCCUCUCCCGUG
+
+
+#Chain A of 3Q1R (RNase P protein cofactor)
+
+#protein A 6 TRRERLRLRRDFLLIFKEGKSLQNEYFVVLFRKNGLDYSRLGIVVKRKFGKATRRNKLKRWVREIFRRNKGVIPKGFDIVVIPRKKLSEEFERVDFWTVREKLLNLLKRIEG
+
+
+#Chain D of 3Q1R (tRNA 5’ leader)
+
+#RNA D -5 GGCGU 
+
+
+#Mg ions
+
+
+monoAtoms E 34 20 Mg+2
+
+
+#STAGES
+
+firstStage 7 
+lastStage 8 
+
+mobilizer Rigid
+
+readFromStage 7
+#matchPurineN1AtomLocations FALSE
+#substituteResidue W 9 U
+#substituteResidue W 12 C
+#substituteResidue Z 30 G
+
+forceMultiplier 400
+
+baseInteraction  W 10 WatsonCrick Z 32 WatsonCrick Cis
+baseInteraction  W 11 WatsonCrick Z 31 WatsonCrick Cis
+baseInteraction  W 12 WatsonCrick Z 30 WatsonCrick Cis
+#baseInteraction  W 13 WatsonCrick Z 29 WatsonCrick Cis
+#baseInteraction  W 14 WatsonCrick Z 28 WatsonCrick Cis
+#baseInteraction  W 15 WatsonCrick Z 27 WatsonCrick Cis
+#baseInteraction  W 7  WatsonCrick W 16 WatsonCrick Cis
+
+#baseInteraction W 6 HelicalStackingA3 W 7 HelicalStackingA5 Cis
+#baseInteraction W 16 HelicalStackingA3 W 17 HelicalStackingA5 Cis
+
+
+mobilizer Default W 8 12
+#mobilizer Default W 11 16
+
+mobilizer Default Z 30 32
+
+mobilizer Default B 50 53
+#mobilizer Default B 52 52
+mobilizer Default B 220 222
+mobilizer Default B 304 304
+mobilizer Default B 321 324
+
+
+#constrainToGround W 10
+#constrainToGround Z 32
+
+constrainChainRigidSegments W Ground
+constrainChainRigidSegments Z Ground
+constrainChainRigidSegments B Ground
+
+#psiPhiMobility Rigid
+
+setDefaultMDParameters
+physicsRadius .6
+#includeResiduesWithin 1.2 W 9 
+#reportingInterval .01
+
+readBlockEnd
+
+
+readAtStage 7
+reportingInterval .01
+numReportingIntervals 1
+#waterDroplet H 5.82 -2.385 1.2769 1.6 30000 
+waterDroplet H 6.41 -2.55 0.80 2.5 30000
+#waterDroplet J 5.82 -3.385 1.2769 1.6 30000
+readBlockEnd
+
+
+readAtStage 8
+reportingInterval .2
+numReportingIntervals 100
+#waterDroplet H 5.82 -2.385 1.2769 1.4 30000 
+waterDroplet H 6.41 -2.55 0.80 2.3 30000
+#waterDroplet J 5.82 -3.385 1.2769 1.4 30000
+readBlockEnd
+
+
+
+
+
+removeRigidBodyMomentum false
+
+
+#keeping it all together: mobilize and constrain to ground all chains belonging to the holoenzyme (chains A, B, C, D)
+
+
+
+#rootMobilizer A Weld
+#rootMobilizer C Weld
+#rootMobilizer D Weld
+
+constrainToGround B 1
+
+#physics off for chain A (protein) and chains C, D (tRNA)
+#deactivatePhysics A
+#deactivatePhysics C
+#deactivatePhysics D
+
+
+randomizeInitialVelocities TRUE

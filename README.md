@@ -1,9 +1,6 @@
 ## Pipeline used in:
 
-# RNase P cleavage of pseudo-knot substrates reveals differences in active site architecture that depends on residue N<sub>-1</sub> in the 5' leader
-David Kosek, J.L. Leal, Ema Kikovska, Guanzhong Mao, Shiying Wu, Samuel Flores and Leif A. Kirsebom
+# RNase P cleavage of pseudoknot substrates reveals differences in activesite architecture that depend on residue N<sub>-1</sub> in the 5' leader
+D. Kosek, J.L. Leal, E. Kikovska, G. Mao, S. Wu, S. Flores and L.A. Kirsebom
 
-____
-
-
-(forthcoming)
+*RNA Biology* (forthcoming)
